@@ -6,7 +6,7 @@ function VenueDetialsPage() {
   return (
     <>
       {/* navbar */}
-      <Navbar />
+      {/* <Navbar /> */}
       <div class="container my-5">
         <div class="ombre-externe">
           <div class="ombre-interne">

@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles.css";
 function Navbar() {
+  const [onscroll, setonscroll] = useState();
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 600) {
+        setonscroll("navcolor");
+      } else {
+        setonscroll("transparent");
+      }
+    });
+  }, []);
+  console.log(onscroll);
   return (
     <div>
       <nav
-        class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark nav-bar"
+        class={`navbar navbar-expand-lg ${onscroll} fixed-top   nav-bar`}
         id="mainNav"
       >
         <div class="container">
