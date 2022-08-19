@@ -16,7 +16,7 @@ function Regsiter() {
                     <form>
                       {/* <!-- to error: add class "has-danger" --> */}
                       <div className="row">
-                        <div className=" mb-3 col-12 col-md-6">
+                        <div className=" mb-3 col-12 col-md-12">
                           <div class="form-group ">
                             <label
                               className="d-flex justify-content-start"
@@ -32,13 +32,13 @@ function Regsiter() {
                             />
                           </div>
                         </div>
-                        <div className=" mb-3 col-12 col-md-6">
+                        <div className=" mb-3 col-12 col-md-12">
                           <div class="form-group">
                             <label
                               className="d-flex justify-content-start"
                               for="exampleInputEmail1"
                             >
-                              Email address
+                              Contact Number
                             </label>
                             <input
                               type="email"
@@ -50,13 +50,13 @@ function Regsiter() {
                         </div>
                       </div>
                       <div className="row">
-                        <div className=" mb-3 col-12 col-md-6">
+                        <div className=" mb-3 col-12 col-md-12">
                           <div class="form-group">
                             <label
                               className="d-flex justify-content-start"
                               for="exampleInputEmail1"
                             >
-                              Phone Number
+                              location
                             </label>
                             <input
                               type="email"
@@ -66,13 +66,13 @@ function Regsiter() {
                             />
                           </div>
                         </div>
-                        <div className=" mb-3 col-12 col-md-6">
+                        <div className=" mb-3 col-12 col-md-12">
                           <div class="form-group">
                             <label
                               className="d-flex justify-content-start"
                               for="exampleInputEmail1"
                             >
-                              Halls List
+                              min & max Sitting Capicity
                             </label>
                             <input
                               type="email"
@@ -82,43 +82,14 @@ function Regsiter() {
                             />
                           </div>
                         </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input
-                          type="email"
-                          class="form-control form-control-sm"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                        />
                       </div>
 
-                      <div class="form-group mt-3">
-                        <label className="" for="exampleInputPassword1">
-                          Password
-                        </label>
-                        <a
-                          href="#"
-                          className="d-flex justif-content-end forgot-password "
-                        >
-                          Forgot password?
-                        </a>
-                        <input
-                          type="password"
-                          class="form-control form-control-sm"
-                          id="exampleInputPassword1"
-                        />
-                      </div>
                       <button
                         type="submit"
                         class="btn btn-primary btn-block w-100"
                       >
-                        Sign in
+                        Next
                       </button>
-
-                      <div class="sign-up ">
-                        Don't have an account? <a href="#">Create One</a>
-                      </div>
                     </form>
                   </div>
                 </div>

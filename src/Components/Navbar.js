@@ -68,6 +68,34 @@ function Navbar() {
                   SigniN
                 </a>
               </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link  dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  href="/signIN"
+                >
+                  Register
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="/register">
+                      Venue
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/register">
+                      Event Orgnaizer
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="register">
+                      Catering
+                    </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>
