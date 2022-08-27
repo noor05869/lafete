@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Auth from "../middleWare/Auth/Auth";
 import "../styles.css";
 function Navbar() {
   const [onscroll, setonscroll] = useState();
-
+  const tokenn = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("login"));
+  const isProfileCompleted = user?.response.data.is_profile_completed;
+  const navigate = useNavigate();
+  console.log("jsom", user?.response.data.is_profile_completed);
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.pageYOffset > 600) {
@@ -11,7 +17,18 @@ function Navbar() {
         setonscroll("transparent");
       }
     });
-  }, []);
+  }, [tokenn, user]);
+  const handleProfile = () => {
+    if (isProfileCompleted) {
+      console.log("isisProfileCompleted", isProfileCompleted);
+      navigate("/register");
+    } else {
+      navigate("/completeprofile");
+    }
+  };
+  const handleLogout = () => {
+    Auth.logout();
+  };
   console.log(onscroll);
   return (
     <div>
@@ -52,50 +69,59 @@ function Navbar() {
                   About
                 </a>
               </li>
-              {/* <li class="nav-item"><a class="nav-link" href="#team">Team</a></li> */}
+              {/* <li class="nav-item"><Link class="nav-link" href="#team">Team</Link></li> */}
               <li class="nav-item">
                 <a class="nav-link" href="#contact">
                   Contact
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signup">
-                  SignUp
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signIN">
-                  SigniN
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link  dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  href="/signIN"
-                >
-                  Register
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="/register">
-                      Venue
+
+              {!tokenn ? (
+                <>
+                  <li class="nav-item">
+                    <Link class="nav-link" to="/signup">
+                      SignUp
+                    </Link>
+                  </li>
+                  <li class="nav-item">
+                    <Link class="nav-link" to="/signIN">
+                      SigniN
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <li class="nav-item">
+                    <a onClick={handleProfile} class="nav-link" href="">
+                      Provide Services
                     </a>
+
+                    {/* <ul class="dropdown-menu">
+                  <li>
+                    <Link class="dropdown-item" href="/register">
+                      Complete your Profile
+                    </Link>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="/register">
+                    <Link class="dropdown-item" href="/register">
                       Event Orgnaizer
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="register">
+                    <Link class="dropdown-item" href="register">
                       Catering
-                    </a>
+                    </Link>
                   </li>
-                </ul>
-              </li>
+                </ul> */}
+                  </li>
+                  <li class="nav-item">
+                    <Link onClick={handleLogout} class="nav-link" to="/signIN">
+                      Logout
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

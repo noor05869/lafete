@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import * as api from "../api/api";
 import useApi from "../Hooks/useApi";
 import { Formik, Field, Form } from "formik";
-
+import { useNavigate } from "react-router-dom";
+import NProgress from "nprogress";
+import Auth from "../middleWare/Auth/Auth";
 function SignIn() {
-  const { error, request } = useApi(api.Signin);
+  const login = useApi(api.Signin);
+  let navigate = useNavigate();
   const [initialvalues, setInitialvalues] = useState({
     email: "",
     password: "",
@@ -12,15 +15,19 @@ function SignIn() {
   const handleSubmit = async (values) => {
     console.log("values", values);
     try {
-      const data = await request({
-        email: "noor@gmail.com",
-        password: "12345678ali",
-      });
+      NProgress.start();
+      const { data } = await login.request(values);
+      localStorage.setItem("token", data.response.data.AccessToken);
+      localStorage.setItem("login", JSON.stringify(data));
+      Auth.login();
+      navigate("./home");
       console.log("--------------> response", data);
+      NProgress.done();
     } catch (error) {
       console.log("eroooorrr", error);
     }
   };
+
   return (
     <div>
       <div className="container mt-5">

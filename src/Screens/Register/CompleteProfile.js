@@ -1,23 +1,25 @@
-import React, { useState } from "react";
-import * as api from "../api/api";
-import useApi from "../Hooks/useApi";
+import NProgress from "nprogress";
 import { Formik, Field, Form } from "formik";
-
-function SignUp() {
-  const { error, request } = useApi(api.Signup);
-  const [initialValues, setInitialValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirm_password: "",
+import React, { useState } from "react";
+import useApi from "../../Hooks/useApi";
+import * as api from "../../api/api";
+function CompleteProfile() {
+  const completeProfile = useApi(api.CompleteProfile);
+  const [initialvalues, setInitialValues] = useState({
+    business_name: "",
+    phone_no: "",
+    landline_no: "",
   });
+
   const handleSubmit = async (values) => {
-    console.log("values signup", values);
     try {
-      const data = await request(values);
-      console.log("--------------> response", data);
+      NProgress.start();
+
+      const { data } = await completeProfile.request(values);
+      console.log(data);
+      NProgress.done();
     } catch (error) {
-      console.log("eroooorrr", error);
+      console.log(error);
     }
   };
   return (
@@ -31,28 +33,28 @@ function SignUp() {
                   <h3 class="card-title text-center">Log in to Lafete</h3>
                   <div class="card-text">
                     <Formik
-                      initialValues={initialValues}
+                      initialValues={initialvalues}
                       onSubmit={handleSubmit}
                     >
                       {/* <!-- */}
                       {/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
                       <Form>
                         {/* <!-- to error: add class "has-danger" --> */}
-                        <div class="form-group mb-3">
-                          <label for="exampleInputEmail1">Name</label>
-                          <Field
-                            name="name"
-                            type="Text"
-                            class="form-control form-control-sm"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
-                          />
-                        </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Email address</label>
+                          <label for="exampleInputEmail1">business name</label>
                           <Field
-                            name="email"
-                            type="email"
+                            type="text"
+                            name="business_name"
+                            class="form-control form-control-sm"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                          />
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="exampleInputNo">Phone no</label>
+                          <Field
+                            type="text"
+                            name="phone_no"
                             class="form-control form-control-sm"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
@@ -60,24 +62,12 @@ function SignUp() {
                         </div>
                         <div class="form-group mt-3">
                           <label className="" for="exampleInputPassword1">
-                            Password
+                            LandLine no
                           </label>
 
                           <Field
-                            name="password"
-                            type="password"
-                            class="form-control form-control-sm"
-                            id="exampleInputPassword1"
-                          />
-                        </div>
-                        <div class="form-group mt-3">
-                          <label className="" for="exampleInputPassword1">
-                            Confirm Password
-                          </label>
-
-                          <Field
-                            name="confirm_password"
-                            type="password"
+                            type="text"
+                            name="landline_no"
                             class="form-control form-control-sm"
                             id="exampleInputPassword1"
                           />
@@ -86,7 +76,7 @@ function SignUp() {
                           type="submit"
                           class="btn btn-primary btn-block w-100"
                         >
-                          Sign in
+                          Submit
                         </button>
 
                         <div class="sign-up ">
@@ -105,4 +95,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default CompleteProfile;

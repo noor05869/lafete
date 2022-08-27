@@ -8,6 +8,8 @@ import SignupOptions from "./Screens/SignupOptions";
 import SignUp from "./Screens/SignUp";
 import VenueList from "./Components/VenueList";
 import Regsiter from "./Screens/Register/Register";
+import CompleteProfile from "./Screens/Register/CompleteProfile";
+import ProtectedRoutes from "./middleWare/ProtectedRouting/ProtectedRute";
 function MainRoutes() {
   return (
     <div className="Routes">
@@ -18,7 +20,11 @@ function MainRoutes() {
         <Route path="/decordetails" element={<VenueList />} />
         <Route path="/Signin" element={<SignIn />} />
         <Route path="/Signup" element={<SignUp />} />
-        <Route path="/register" element={<Regsiter />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/register" element={<Regsiter />} />
+          <Route path="/completeprofile" element={<CompleteProfile />} />
+        </Route>
+
         <Route path="/VenueDetials" element={<VenueDetialsPage />} />
 
         <Route path="/Signupoptions" element={<SignupOptions />} />

@@ -3,13 +3,23 @@ const api = axios.create({
   baseURL: "https://of0ii0wrl1.execute-api.us-east-1.amazonaws.com/stage",
 });
 
+const config = {
+  headers: {
+    Authorization: localStorage.getItem("token"),
+  },
+};
 export function Signup(data) {
   console.log("persom=nla info-==========", data);
   return api.post("/auth/signup", { ...data });
 }
 export function Signin(data) {
   console.log("signin-==========", data);
-  return api.post("/auth/signin", { ...data });
+  return api.post("/auth/login", { ...data });
+}
+
+export function CompleteProfile(data) {
+  console.log("signin-==========", data);
+  return api.post("/service_provider/profile", { ...data }, config);
 }
 // export function postOtp(data) {
 //   console.log("final--------", data);
