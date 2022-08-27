@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import * as api from "../api/api";
+import useApi from "../Hooks/useApi";
+import { Formik, Field, Form } from "formik";
 
 function SignUp() {
+  const { error, request } = useApi(api.Signup);
+  const [initialValues, setInitialValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
+  const handleSubmit = async (values) => {
+    console.log("values signup", values);
+    try {
+      const data = await request({
+        email: "noor@gmail.com",
+        password: "12345678ali",
+        confirm_password: "12345678ali",
+        name: "noor",
+      });
+      console.log("--------------> response", data);
+    } catch (error) {
+      console.log("eroooorrr", error);
+    }
+  };
   return (
     <div>
       <div className="container mt-5">
@@ -11,52 +35,70 @@ function SignUp() {
                 <div class="card-body">
                   <h3 class="card-title text-center">Log in to Lafete</h3>
                   <div class="card-text">
-                    {/* <!-- */}
-                    {/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
-                    <form>
-                      {/* <!-- to error: add class "has-danger" --> */}
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input
-                          type="email"
-                          class="form-control form-control-sm"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                        />
-                      </div>
-                      <div class="form-group mt-3">
-                        <label className="" for="exampleInputPassword1">
-                          Password
-                        </label>
+                    <Formik
+                      initialValues={initialValues}
+                      onSubmit={handleSubmit}
+                    >
+                      {/* <!-- */}
+                      {/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
+                      <Form>
+                        {/* <!-- to error: add class "has-danger" --> */}
+                        <div class="form-group mb-3">
+                          <label for="exampleInputEmail1">Name</label>
+                          <Field
+                            name="name"
+                            type="Text"
+                            class="form-control form-control-sm"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <Field
+                            name="email"
+                            type="email"
+                            class="form-control form-control-sm"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                          />
+                        </div>
+                        <div class="form-group mt-3">
+                          <label className="" for="exampleInputPassword1">
+                            Password
+                          </label>
 
-                        <input
-                          type="password"
-                          class="form-control form-control-sm"
-                          id="exampleInputPassword1"
-                        />
-                      </div>
-                      <div class="form-group mt-3">
-                        <label className="" for="exampleInputPassword1">
-                          Confirm Password
-                        </label>
+                          <Field
+                            name="password"
+                            type="password"
+                            class="form-control form-control-sm"
+                            id="exampleInputPassword1"
+                          />
+                        </div>
+                        <div class="form-group mt-3">
+                          <label className="" for="exampleInputPassword1">
+                            Confirm Password
+                          </label>
 
-                        <input
-                          type="password"
-                          class="form-control form-control-sm"
-                          id="exampleInputPassword1"
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-block w-100"
-                      >
-                        Sign in
-                      </button>
+                          <Field
+                            name="confirm_password"
+                            type="password"
+                            class="form-control form-control-sm"
+                            id="exampleInputPassword1"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-block w-100"
+                        >
+                          Sign in
+                        </button>
 
-                      <div class="sign-up ">
-                        Don't have an account? <a href="#">Create One</a>
-                      </div>
-                    </form>
+                        <div class="sign-up ">
+                          Don't have an account? <a href="#">Create One</a>
+                        </div>
+                      </Form>
+                    </Formik>
                   </div>
                 </div>
               </div>

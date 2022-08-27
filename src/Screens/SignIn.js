@@ -1,42 +1,92 @@
-import React from 'react'
+import React, { useState } from "react";
+import * as api from "../api/api";
+import useApi from "../Hooks/useApi";
+import { Formik, Field, Form } from "formik";
 
 function SignIn() {
+  const { error, request } = useApi(api.Signin);
+  const [initialvalues, setInitialvalues] = useState({
+    email: "",
+    password: "",
+  });
+  const handleSubmit = async (values) => {
+    console.log("values", values);
+    try {
+      const data = await request({
+        email: "noor@gmail.com",
+        password: "12345678ali",
+      });
+      console.log("--------------> response", data);
+    } catch (error) {
+      console.log("eroooorrr", error);
+    }
+  };
   return (
     <div>
-         <div className="container mt-5">
-                <div className="d-flex justify-content-center align-items-center">
-                    <div className=" bg-white p-3">
-        <div class="global-container">
-	<div class="card login-form">
-	<div class="card-body">
-		<h3 class="card-title text-center">Log in to Lafete</h3>
-		<div class="card-text">
-			{/* <!-- */}
-			{/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
-			<form>
-				{/* <!-- to error: add class "has-danger" --> */}
-				<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-				</div>
-				<div class="form-group mt-3">
-					<label className="" for="exampleInputPassword1">Password</label>
-					<a  href="#" className='d-flex justif-content-end forgot-password '>Forgot password?</a>
-					<input type="password" class="form-control form-control-sm" id="exampleInputPassword1"/>
-				</div>
-				<button type="submit" class="btn btn-primary btn-block w-100">Sign in</button>
-				
-				<div class="sign-up ">
-					Don't have an account? <a href="#">Create One</a>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-</div>
-</div></div></div>
+      <div className="container mt-5">
+        <div className="d-flex justify-content-center align-items-center">
+          <div className=" bg-white p-3">
+            <div class="global-container">
+              <div class="card login-form">
+                <div class="card-body">
+                  <h3 class="card-title text-center">Log in to Lafete</h3>
+                  <div class="card-text">
+                    <Formik
+                      initialValues={initialvalues}
+                      onSubmit={handleSubmit}
+                    >
+                      {/* <!-- */}
+                      {/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
+                      <Form>
+                        {/* <!-- to error: add class "has-danger" --> */}
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <Field
+                            type="email"
+                            name="email"
+                            class="form-control form-control-sm"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                          />
+                        </div>
+                        <div class="form-group mt-3">
+                          <label className="" for="exampleInputPassword1">
+                            Password
+                          </label>
+                          <a
+                            href="#"
+                            className="d-flex justif-content-end forgot-password "
+                          >
+                            Forgot password?
+                          </a>
+                          <Field
+                            type="password"
+                            name="password"
+                            class="form-control form-control-sm"
+                            id="exampleInputPassword1"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-block w-100"
+                        >
+                          Sign in
+                        </button>
+
+                        <div class="sign-up ">
+                          Don't have an account? <a href="#">Create One</a>
+                        </div>
+                      </Form>
+                    </Formik>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default SignIn
+export default SignIn;

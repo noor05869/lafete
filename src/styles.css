@@ -11988,3 +11988,142 @@ border-radius: 8px;
   -moz-box-shadow: inset 8px 0px 14px -1px rgba(0, 0, 0, 0.4);
   box-shadow: inset 8px 0px 14px -1px rgba(0, 0, 0, 0.4);
 }
+/* fileinput */
+.custom-file-input {
+  width: 100%;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: url(./asset/img/Upload.svg) "     Upload Front";
+  display: inline-block;
+  background: #206feb;
+  border: 0;
+  border-radius: 8px;
+  padding: 7px 11px;
+  outline: none;
+  height: 40px;
+  width: 100%;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 300;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+}
+
+input[type="file"] {
+  color: transparent !important;
+}
+
+.ml-55 {
+  margin-left: 55px;
+}
+
+.Circularprogress.yellow .Circularprogress-bar {
+  border-color: #206feb;
+}
+
+.Circularprogress.yellow .Circularprogress-right .Circularprogress-bar {
+  animation: loading-3 1.8s linear forwards;
+}
+
+.Circularprogress.yellow .Circularprogress-left .Circularprogress-bar {
+  animation: loading-3 1.8s linear forwards;
+}
+.Circularprogress {
+  width: 50px;
+  height: 50px !important;
+  float: left;
+  line-height: 50px;
+  background: none;
+  margin: 0px;
+  box-shadow: none;
+  position: relative;
+}
+
+.Circularprogress:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Circularprogress > span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.Circularprogress .Circularprogress-left {
+  left: 0;
+}
+
+.Circularprogress .Circularprogress-bar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 4px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+
+.Circularprogress .Circularprogress-left .Circularprogress-bar {
+  left: 100%;
+  border-top-right-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+
+.Circularprogress .Circularprogress-right {
+  right: 0;
+}
+
+.Circularprogress .Circularprogress-right .Circularprogress-bar {
+  left: -100%;
+  border-top-left-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right;
+  animation: loading-1 1.8s linear forwards;
+}
+
+.Circularprogress .Circularprogress-value {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: transparent;
+  line-height: 45px;
+  text-align: center;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+.Circularprogress>span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+.Circularprogress .Circularprogress-left {
+  left: 0;
+}
+.t-pink {
+  color: #206feb;
+}

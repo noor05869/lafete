@@ -7,7 +7,7 @@ import SignIn from "./Screens/SignIn";
 import SignupOptions from "./Screens/SignupOptions";
 import SignUp from "./Screens/SignUp";
 import VenueList from "./Components/VenueList";
-import Regsiter from "./Screens/Register";
+import Regsiter from "./Screens/Register/Register";
 function MainRoutes() {
   return (
     <div className="Routes">
