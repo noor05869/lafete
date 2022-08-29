@@ -38,7 +38,8 @@ function Navbar() {
       >
         <div class="container">
           <a class="navbar-brand" href="#page-top">
-            <img src="assets/img/navbar-logo.svg" alt="..." />
+            <h3>Lafate</h3>
+            {/* <img src="assets/img/navbar-logo.svg" alt="..." /> */}
           </a>
           <button
             class="navbar-toggler"
