@@ -7,14 +7,18 @@ import imag3 from "../../asset/img/about/3.jpg";
 import imag4 from "../../asset/img/about/4.jpg";
 import Slider from "../../Components/slider/Slider";
 import { useNavigate } from "react-router-dom";
-
+import useApi from "../../Hooks/useApi";
+import * as api from "../../api/api";
 function LandingPage() {
   const navigate = useNavigate();
-
-  function handleclick() {
-    navigate("/decordetails");
+  const serviceData = useApi(api.getservicesData);
+  async function handleclick(value) {
+    // try {
+    //   const data = await serviceData.request(value);
+    //   console.log("-------------->", data);
+    // } catch {}
+    navigate(`/details/${value}`);
   }
-
   return (
     <>
       <div>
@@ -42,7 +46,7 @@ function LandingPage() {
             </div>
             <div class="row text-center justify-content-center">
               <div
-                onClick={handleclick}
+                onClick={() => handleclick("Marquee")}
                 class="col-md-3 services-card ms-5 me-4 cusor-pointer"
               >
                 <img
@@ -57,14 +61,17 @@ function LandingPage() {
                   <i class="fas fa-circle fa-stack-2x text-primary"></i>
                   <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4 class="my-3">Decor Shops</h4>
+                <h4 class="my-3">Marquee</h4>
                 <p class="text-muted">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Minima maxime quam architecto quo inventore harum ex magni,
                   dicta impedit.
                 </p>
               </div>
-              <div class="col-md-3 services-card mx-4">
+              <div
+                onClick={() => handleclick("Hall")}
+                class="col-md-3 services-card mx-4 cusor-pointer"
+              >
                 <img
                   height="150"
                   width="200"
@@ -84,7 +91,10 @@ function LandingPage() {
                   dicta impedit.
                 </p>
               </div>
-              <div class="col-md-3 services-card mx-4">
+              <div
+                onClick={() => handleclick("Catering")}
+                class="col-md-3 services-card mx-4 cusor-pointer"
+              >
                 <img
                   height="150"
                   width="200"
@@ -104,7 +114,10 @@ function LandingPage() {
                   dicta impedit.
                 </p>
               </div>
-              <div class="col-md-3 mt-5  services-card mx-4">
+              <div
+                class="col-md-3 mt-5  services-card mx-4 cusor-pointer"
+                onClick={() => handleclick("Farm House")}
+              >
                 <img
                   height="150"
                   width="200"
@@ -112,19 +125,21 @@ function LandingPage() {
                   s
                   src="https://th.bing.com/th/id/R.af7866e3963b2d310487a022aead459b?rik=a6rGZBw1AicdDA&pid=ImgRaw&r=0"
                 />
-
                 <span class="fa-stack fa-4x">
                   <i class="fas fa-circle fa-stack-2x text-primary"></i>
                   <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4 class="my-3">villas</h4>
+                <h4 class="my-3">Farm House</h4>
                 <p class="text-muted">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Minima maxime quam architecto quo inventore harum ex magni,
                   dicta impedit.
                 </p>
               </div>
-              <div class="col-md-3 mt-5  services-card mx-4">
+              <div
+                onClick={() => handleclick("Farm House")}
+                class="col-md-3 mt-5  services-card mx-4"
+              >
                 <img
                   height="150"
                   width="200"

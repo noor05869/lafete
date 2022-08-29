@@ -12127,3 +12127,6 @@ input[type="file"] {
 .t-pink {
   color: #206feb;
 }
+.ant-tooltip-inner{
+/* display: none; */
+}

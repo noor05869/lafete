@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Cross from "../../asset/img/Group 208.png";
-function SecndForm() {
+import UploadFile from "../../Components/UploaadFile";
+import { Formik, Field, Form } from "formik";
+
+function SecndForm({ handleSubmit, initialValues }) {
   const [file, setfile] = useState();
 
   const handleChange = (e) => {
@@ -20,12 +23,16 @@ function SecndForm() {
                     <div class="card-text">
                       {/* <!-- */}
                       {/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
-                      <form>
-                        {/* <!-- to error: add class "has-danger" --> */}
-                        <div className="row">
-                          <div className=" mb-3 col-12 col-md-12">
-                            <div className="col-6">
-                              {file ? (
+                      <Formik
+                        initialValues={initialValues}
+                        onSubmit={handleSubmit}
+                      >
+                        <Form>
+                          {/* <!-- to error: add class "has-danger" --> */}
+                          <div className="row">
+                            <div className=" mb-3 col-12 col-md-12">
+                              <div className="col-12">
+                                {/* {file ? (
                                 <>
                                   <div className="d-table">
                                     <div className="Circularprogress yellow">
@@ -42,7 +49,7 @@ function SecndForm() {
                                     <div className="position-absolute ml-55">
                                       <div>
                                         <p className="m-0 t-grey-600 fs16 fw-500 dotted">
-                                          {/* {file.name} */}
+                                          {file.name}
                                         </p>
                                         <div>
                                           <p className="m-0 t-grey-400 fw-400 fs14 ">
@@ -71,68 +78,76 @@ function SecndForm() {
                                   accept=".jpg, .jpeg, .png"
                                   required
                                 />
-                              )}
+                              )} */}
+                                <UploadFile />
+                              </div>
+                            </div>
+                            <div className=" mb-3 col-12 col-md-12">
+                              <div class="form-group">
+                                <label
+                                  className="d-flex justify-content-start"
+                                  for="exampleInputEmail1"
+                                >
+                                  Max Seating Capcity
+                                </label>
+                                <Field
+                                  name="max_seating"
+                                  type="text"
+                                  class="form-control form-control-sm"
+                                />
+                              </div>
                             </div>
                           </div>
-                          <div className=" mb-3 col-12 col-md-12">
-                            <div class="form-group">
-                              <label
-                                className="d-flex justify-content-start"
-                                for="exampleInputEmail1"
-                              >
-                                Contact Number
-                              </label>
-                              <input
-                                type="email"
-                                class="form-control form-control-sm"
-                                id="exampleInputEmail1"
-                                aria-describedby="emailHelp"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className=" mb-3 col-12 col-md-12">
-                            <div class="form-group">
-                              <label
-                                className="d-flex justify-content-start"
-                                for="exampleInputEmail1"
-                              >
-                                location
-                              </label>
-                              <input
-                                type="email"
-                                class="form-control form-control-sm"
-                                id="exampleInputEmail1"
-                                aria-describedby="emailHelp"
-                              />
-                            </div>
-                          </div>
-                          <div className=" mb-3 col-12 col-md-12">
-                            <div class="form-group">
-                              <label
-                                className="d-flex justify-content-start"
-                                for="exampleInputEmail1"
-                              >
-                                min & max Sitting Capicity
-                              </label>
-                              <input
-                                type="email"
-                                class="form-control form-control-sm"
-                                id="exampleInputEmail1"
-                                aria-describedby="emailHelp"
-                              />
-                            </div>
-                          </div>
-                        </div>
+                          <div className="row">
+                            <div className=" mb-3 col-12 col-md-12">
+                              <div class="form-group">
+                                <label
+                                  className="d-flex justify-content-start"
+                                  for="exampleInputEmail1"
+                                >
+                                  Evening Slot
+                                </label>
+                                <Field
+                                  class="form-control form-control-sm"
+                                  as="select"
+                                  name="slot"
+                                >
+                                  <option value="1PM-5PM">Evening slot</option>
+                                  <option value="Catering">
+                                    Afternoon slot
+                                  </option>
 
-                        <button
-                          type="submit"
-                          class="btn btn-primary btn-block w-100"
-                        >
-                          Next
-                        </button>
-                      </form>
+                                  <option value="Morquee">Morquee</option>
+                                </Field>
+                              </div>
+                            </div>
+                            <div className=" mb-3 col-12 col-md-12">
+                              <div class="form-group">
+                                <label
+                                  className="d-flex justify-content-start"
+                                  for="exampleInputEmail1"
+                                >
+                                  Per-Head
+                                </label>
+                                <Field
+                                  name="per_head"
+                                  type="text"
+                                  class="form-control form-control-sm"
+                                  id="exampleInputEmail1"
+                                  aria-describedby="emailHelp"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <button
+                            type="submit"
+                            class="btn btn-primary btn-block w-100"
+                          >
+                            Next
+                          </button>
+                        </Form>
+                      </Formik>
                     </div>
                   </div>
                 </div>

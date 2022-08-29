@@ -5,6 +5,8 @@ import { Formik, Field, Form } from "formik";
 import { useNavigate } from "react-router-dom";
 import NProgress from "nprogress";
 import Auth from "../middleWare/Auth/Auth";
+import { loginSchema } from "../utils/validaion";
+import FieldError from "../Components/fiels-Error";
 function SignIn() {
   const login = useApi(api.Signin);
   let navigate = useNavigate();
@@ -18,6 +20,8 @@ function SignIn() {
       NProgress.start();
       const { data } = await login.request(values);
       localStorage.setItem("token", data.response.data.AccessToken);
+      localStorage.setItem("IdToken", data.response.data.IdToken);
+
       localStorage.setItem("login", JSON.stringify(data));
       Auth.login();
       navigate("./home");
@@ -41,6 +45,7 @@ function SignIn() {
                     <Formik
                       initialValues={initialvalues}
                       onSubmit={handleSubmit}
+                      validationSchema={loginSchema}
                     >
                       {/* <!-- */}
                       {/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
@@ -55,6 +60,7 @@ function SignIn() {
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                           />
+                          <FieldError field="email" />
                         </div>
                         <div class="form-group mt-3">
                           <label className="" for="exampleInputPassword1">
@@ -72,6 +78,7 @@ function SignIn() {
                             class="form-control form-control-sm"
                             id="exampleInputPassword1"
                           />
+                          <FieldError field="password" />
                         </div>
                         <button
                           type="submit"

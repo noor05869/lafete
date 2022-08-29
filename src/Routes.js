@@ -17,7 +17,7 @@ function MainRoutes() {
         <Route path="*" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<LandingPage />} />
 
-        <Route path="/decordetails" element={<VenueList />} />
+        <Route path="/details/:slug" element={<VenueList />} />
         <Route path="/Signin" element={<SignIn />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route element={<ProtectedRoutes />}>

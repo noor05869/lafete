@@ -8,6 +8,11 @@ const config = {
     Authorization: localStorage.getItem("token"),
   },
 };
+const idconfig = {
+  headers: {
+    Authorization: localStorage.getItem("IdToken"),
+  },
+};
 export function Signup(data) {
   console.log("persom=nla info-==========", data);
   return api.post("/auth/signup", { ...data });
@@ -20,6 +25,16 @@ export function Signin(data) {
 export function CompleteProfile(data) {
   console.log("signin-==========", data);
   return api.post("/service_provider/profile", { ...data }, config);
+}
+
+export function AddService(data) {
+  console.log("signin-==========", data);
+  return api.post("/services", { ...data }, idconfig);
+}
+
+export function getservicesData(data) {
+  console.log("signin-==========", data);
+  return api.get(`/services?service=${data}`, { ...data }, idconfig);
 }
 // export function postOtp(data) {
 //   console.log("final--------", data);

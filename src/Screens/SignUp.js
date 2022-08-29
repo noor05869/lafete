@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import * as api from "../api/api";
 import useApi from "../Hooks/useApi";
 import { Formik, Field, Form } from "formik";
+import { SignupSchema } from "../utils/validaion";
+import FieldError from "../Components/fiels-Error";
 
 function SignUp() {
   const { error, request } = useApi(api.Signup);
@@ -33,6 +35,7 @@ function SignUp() {
                     <Formik
                       initialValues={initialValues}
                       onSubmit={handleSubmit}
+                      validationSchema={SignupSchema}
                     >
                       {/* <!-- */}
                       {/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
@@ -47,6 +50,7 @@ function SignUp() {
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                           />
+                          <FieldError name="name" />
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Email address</label>
@@ -57,6 +61,7 @@ function SignUp() {
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                           />
+                          <FieldError name="email" />
                         </div>
                         <div class="form-group mt-3">
                           <label className="" for="exampleInputPassword1">
@@ -69,6 +74,7 @@ function SignUp() {
                             class="form-control form-control-sm"
                             id="exampleInputPassword1"
                           />
+                          <FieldError name="password" />
                         </div>
                         <div class="form-group mt-3">
                           <label className="" for="exampleInputPassword1">
@@ -81,6 +87,7 @@ function SignUp() {
                             class="form-control form-control-sm"
                             id="exampleInputPassword1"
                           />
+                          <FieldError name="confirm_password" />
                         </div>
                         <button
                           type="submit"
