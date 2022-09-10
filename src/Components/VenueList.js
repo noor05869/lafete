@@ -21,12 +21,10 @@ function VenueList() {
       <div>
         <div className="container">
           <div className="details mt-5">
-            <h3 className="para ">
-            Venues
-            </h3>
+            <h3 className="para ">Decor Shops</h3>
           </div>
           <div className="row mt-5">
-            {serviceData?.data?.response.data.map((data, index) => (
+            {serviceData?.data?.response.map((data, index) => (
               <>
                 <div className="preview-card">
                   <div className="preview-card__wrp">
