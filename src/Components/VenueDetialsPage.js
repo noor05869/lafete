@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import useApi from "../Hooks/useApi";
 import Navbar from "./Navbar";
 import Slider from "./slider/Slider";
-
+import * as api from "../api/api";
 function VenueDetialsPage() {
+  const id = useParams();
+  const getSingleDetail = useApi(api.getSingleServices);
+  console.log("useParams", id);
+  const fetchData = async () => {
+    try {
+      const data = await getSingleDetail.request(id);
+    } catch {}
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // console.log("response", getSingleDetail.data.response.data.images);
   return (
     <>
       {/* navbar */}
@@ -16,39 +31,19 @@ function VenueDetialsPage() {
               data-bs-ride="carousel"
             >
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img
-                    src="https://nsm09.casimages.com/img/2021/07/21//21072103063525998217500508.jpg"
-                    class="d-block w-100 peinture-ombre-interne-fine"
-                    alt="..."
-                  />
-                  <div class="carousel-caption">
-                    <h5>First slide</h5>
-                    <p></p>
+                {getSingleDetail?.data?.response?.data?.images.map((data) => (
+                  <div class="carousel-item active">
+                    <img
+                      // src="https://nsm09.casimages.com/img/2021/07/21//21072103063525998217500508.jpg"
+                      src={data}
+                      class="d-block w-100 peinture-ombre-interne-fine"
+                      alt="..."
+                    />
+                    <div class="carousel-caption">
+                      <p></p>
+                    </div>
                   </div>
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="https://nsm09.casimages.com/img/2021/07/21//21072103063625998217500510.jpg"
-                    class="d-block w-100"
-                    alt="..."
-                  />
-                  <div class="carousel-caption">
-                    <h5>Second slide</h5>
-                    <p></p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="https://nsm09.casimages.com/img/2021/07/21//21072103063625998217500509.jpg"
-                    class="d-block w-100"
-                    alt="..."
-                  />
-                  <div class="carousel-caption">
-                    <h5>Third slide</h5>
-                    <p></p>
-                  </div>
-                </div>
+                ))}
               </div>
               <button
                 class="carousel-control-prev"

@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { Formik, Field, Form, FieldArray } from "formik";
 import UploadFile from "../../Components/UploaadFile";
 import { CloseSquareFilled } from "@ant-design/icons";
-function FirstForm({ handleStep, handleSubmit, initialValues }) {
+import { servicesValidations } from "../../utils/validaion";
+import FieldError from "../../Components/fiels-Error";
+function FirstForm({
+  handleStep,
+  handleSubmit,
+  initialValues,
+  successMessage,
+  handleImages,
+}) {
   return (
     <div>
       <div>
@@ -12,13 +20,17 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
               <div class="global-container shadow">
                 <div style={{ Width: "540px" }} class="card login-fo rm">
                   <div class="card-body">
-                    <h3 class="card-title text-center">Register </h3>
+                    <h3 class="card-title text-center font-weight-bold">
+                      {" "}
+                      Add Services{" "}
+                    </h3>
                     <div class="card-text">
                       {/* <!-- */}
                       {/* <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> --> */}
                       <Formik
                         initialValues={initialValues}
                         onSubmit={handleSubmit}
+                        validationSchema={servicesValidations}
                       >
                         {({ values }) => (
                           <Form>
@@ -51,6 +63,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     </option>
                                     <option value="Morquee">Morquee</option>
                                   </Field>
+                                  <FieldError name="service" />
                                 </div>
                               </div>
                               <div className=" mb-3 col-12 col-md-6">
@@ -68,6 +81,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     id="exampleInputEmail1"
                                     aria-describedby="emailHelp"
                                   />
+                                  <FieldError name="name" />
                                 </div>
                               </div>
                             </div>
@@ -85,6 +99,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     type="text"
                                     class="form-control form-control"
                                   />
+                                  <FieldError name="location" />
                                 </div>
                               </div>
                               <div className=" mb-3 col-12 col-md-6">
@@ -96,7 +111,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     City
                                   </label>
                                   <Field
-                                    class="form-control form-control"
+                                    class="form-select form-control"
                                     as="select"
                                     name="city"
                                   >
@@ -107,6 +122,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     <option value="Multan">Multan</option>
                                     <option value="Faislabad">Faislabad</option>
                                   </Field>
+                                  <FieldError name="city" />
                                 </div>
                               </div>
                               <div className=" mb-3 col-12 col-md-6">
@@ -118,12 +134,11 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     State
                                   </label>
                                   <Field
-                                    class="form-control form-control"
+                                    class="form-select form-control"
                                     as="select"
                                     name="state"
                                   >
-                                    <option selected>Select City</option>
-
+                                    <option selected>Select State</option>
                                     <option value="Punjab">Punjab</option>
                                     <option value="Sindh">Sindh</option>
                                     <option value="KPK">
@@ -136,6 +151,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                       Balochistan
                                     </option>
                                   </Field>
+                                  <FieldError name="state" />
                                 </div>
                               </div>
                             </div>
@@ -149,7 +165,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     Upload Service Images
                                   </label>
 
-                                  <UploadFile />
+                                  <UploadFile handleImages={handleImages} />
                                 </div>
                               </div>
                             </div>
@@ -171,7 +187,10 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                         name="max_seating"
                                         type="text"
                                         class="form-control form-control"
+                                        id="exampleInputEmail1"
+                                        aria-describedby="emailHelp"
                                       />
+                                      <FieldError name="max_seating" />
                                     </div>
                                   </div>
                                   <div className=" mb-3 col-12 col-md-6">
@@ -183,17 +202,20 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                         Evening Slot
                                       </label>
                                       <Field
-                                        class="form-control form-control"
+                                        class="form-select form-control"
                                         as="select"
                                         name="slot"
                                       >
+                                        <option selected>Select City</option>
+
                                         <option value="1PM-5PM">
                                           Evening slot
                                         </option>
-                                        <option value="Catering">
+                                        <option value="6PM-10PM">
                                           Afternoon slot
                                         </option>
                                       </Field>
+                                      <FieldError name="slot" />
                                     </div>
                                   </div>
                                 </>
@@ -215,6 +237,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     id="exampleInputEmail1"
                                     aria-describedby="emailHelp"
                                   />
+                                  <FieldError name="per_head" />
                                 </div>
                               </div>
                               <div className=" mb-3 col-12 col-md-6">
@@ -232,6 +255,7 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                     id="exampleInputEmail1"
                                     aria-describedby="emailHelp"
                                   />
+                                  <FieldError name="about_service" />
                                 </div>
                               </div>
                             </div>
@@ -337,6 +361,14 @@ function FirstForm({ handleStep, handleSubmit, initialValues }) {
                                 </div>
                               )}
                             </FieldArray>
+                            {successMessage && (
+                              <div
+                                class=" mb-1 alert alert-success"
+                                role="alert"
+                              >
+                                {successMessage}
+                              </div>
+                            )}
                             <button
                               type="submit"
                               class="btn btn-primary btn-block w-100"

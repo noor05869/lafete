@@ -36,6 +36,11 @@ export function getservicesData(data) {
   console.log("signin-==========", data);
   return api.get(`/services?service=${data}`, { ...data }, idconfig);
 }
+export function getSingleServices(id) {
+  console.log("------<>id", id.id);
+  return api.get(`/services/${id.id}`);
+}
+
 // export function postOtp(data) {
 //   console.log("final--------", data);
 

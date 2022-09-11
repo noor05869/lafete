@@ -25,7 +25,7 @@ function MainRoutes() {
           <Route path="/completeprofile" element={<CompleteProfile />} />
         </Route>
 
-        <Route path="/VenueDetials" element={<VenueDetialsPage />} />
+        <Route path="/VenueDetials/:id" element={<VenueDetialsPage />} />
 
         <Route path="/Signupoptions" element={<SignupOptions />} />
       </Routes>

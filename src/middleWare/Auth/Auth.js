@@ -1,7 +1,9 @@
 class Auth {
   User = JSON.parse(localStorage.getItem("login"));
+  token = localStorage.getItem("token");
+
   constructor() {
-    this.authenticated = this.User ? true : false;
+    this.authenticated = this.User && this.token ? true : false;
   }
 
   login = () => {

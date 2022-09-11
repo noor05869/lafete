@@ -5,6 +5,7 @@ import * as api from "../../api/api";
 import useApi from "../../Hooks/useApi";
 import { notification } from "antd";
 import { useNavigate } from "react-router-dom";
+import { ErrorMessage } from "formik";
 
 function Regsiter() {
   const [steps, setSteps] = useState("1");
@@ -12,6 +13,7 @@ function Regsiter() {
   const addService = useApi(api.AddService);
   const navigate = useNavigate();
   useEffect(() => {}, [steps]);
+  const [Filess, setFiles] = useState();
   const [initialValues, setinitialValues] = useState({
     service: "",
     location: "",
@@ -25,6 +27,7 @@ function Regsiter() {
     name: "",
     slot: [],
     per_head: "",
+    max_seating: "",
     services: [
       {
         service: "",
@@ -48,13 +51,18 @@ function Regsiter() {
       },
     });
   };
+
+  const handleImages = (files) => {
+    setFiles(files);
+  };
+  console.log("handlke filesn function ", Filess);
   const handleSubmit = async (values) => {
     console.log(values);
     try {
       const data = await addService.request(values);
       openNotification();
       console.log("-------->", data);
-      // navigate("/home");
+      navigate("/home");
     } catch (_) {}
   };
 
@@ -62,9 +70,11 @@ function Regsiter() {
     case "1":
       return (
         <FirstForm
+          handleImages={handleImages}
           initialValues={initialValues}
           handleSubmit={handleSubmit}
           handleStep={handleStep}
+          successMessage={addService.data?.response.message}
         />
       );
 

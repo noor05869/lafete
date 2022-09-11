@@ -2,22 +2,17 @@ import { Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 import React, { useState } from "react";
 
-const UploadFile = () => {
-  const [fileList, setFileList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+const UploadFile = ({ handleImages }) => {
+  const [fileList, setFileList] = useState([]);
 
   const onChange = ({ fileList: newFileList }) => {
-    console.log(fileList);
+    // console.log("file list", fileList);
     setFileList(newFileList);
+    handleImages(fileList);
   };
 
   const onPreview = async (file) => {
+    console.log("values", file);
     let src = file.url;
 
     if (!src) {
@@ -38,7 +33,7 @@ const UploadFile = () => {
   return (
     <ImgCrop rotate>
       <Upload
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        action="http://localhost:3000/"
         listType="picture-card"
         fileList={fileList}
         onChange={onChange}

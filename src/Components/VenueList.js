@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import * as api from "../api/api";
 import useApi from "../Hooks/useApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Navbar from "./Navbar";
 function VenueList() {
   let { slug } = useParams();
   console.log(slug);
   const serviceData = useApi(api.getservicesData);
+  const navigate = useNavigate();
   const fetchData = async () => {
     try {
       const data = await serviceData.request(slug);
@@ -14,10 +16,13 @@ function VenueList() {
   useEffect(() => {
     fetchData();
   }, [slug]);
-  // console.log("-------------->", serviceData?.data?.response.data.images);
-
+  console.log("-------------->", serviceData);
+  function handleClick(id) {
+    navigate(`/VenueDetials/${id}`);
+  }
   return (
     <div>
+      {/* <Navbar />  */}
       <div>
         <div className="container">
           <div className="details mt-5">
@@ -55,14 +60,12 @@ function VenueList() {
                         <div className="preview-card__text">
                           <strong>seating Capcity : </strong> {data.max_seating}
                         </div>
-                        <a
-                          href="/VenueDetials
-                    
-                    "
+                        <span
+                          onClick={() => handleClick(data.Pk)}
                           className="preview-card__button"
                         >
                           READ MORE
-                        </a>
+                        </span>
                       </div>
                     </div>
                   </div>
