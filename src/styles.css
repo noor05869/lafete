@@ -11983,6 +11983,7 @@ border-radius: 8px;
 
 .ombre-interne {
   padding: 5vw;
+  max-height: 500px !important;
   background-color: white;
   -webkit-box-shadow: inset 8px 0px 14px -1px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: inset 8px 0px 14px -1px rgba(0, 0, 0, 0.4);

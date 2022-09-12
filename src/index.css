@@ -236,3 +236,7 @@ body {
   display:flex;
   
 }
+
+.carousel-item{
+  height: 400px !important;
+}

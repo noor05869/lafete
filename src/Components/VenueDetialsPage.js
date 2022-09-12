@@ -4,6 +4,10 @@ import useApi from "../Hooks/useApi";
 import Navbar from "./Navbar";
 import Slider from "./slider/Slider";
 import * as api from "../api/api";
+import imag1 from "../asset/img/about/1.jpg";
+import imag2 from "../asset/img/about/2.jpg";
+import imag3 from "../asset/img/about/3.jpg";
+import imag4 from "../asset/img/about/4.jpg";
 function VenueDetialsPage() {
   const id = useParams();
   const getSingleDetail = useApi(api.getSingleServices);
@@ -16,8 +20,8 @@ function VenueDetialsPage() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  // console.log("response", getSingleDetail.data.response.data.images);
+  const resData = getSingleDetail?.data?.response?.data;
+  console.log("response", getSingleDetail?.data);
   return (
     <>
       {/* navbar */}
@@ -113,7 +117,7 @@ function VenueDetialsPage() {
                     </div>{" "}
                     <div class="jet-breadcrumbs__item">
                       <span class="jet-breadcrumbs__item-target">
-                        BARKI ROAD FARMHOUSE-147
+                        {resData?.name}
                       </span>
                     </div>
                   </div>
@@ -142,7 +146,7 @@ function VenueDetialsPage() {
                   aria-hidden="true"
                 ></i>
                 <div class="jet-listing-dynamic-field__content">
-                  BARKI ROAD{" "}
+                  {resData?.location}
                 </div>
               </div>
             </div>{" "}
@@ -156,12 +160,12 @@ function VenueDetialsPage() {
         >
           <div class="elementor-widget-container">
             <div class="jet-listing jet-listing-dynamic-terms">
-              <span class="jet-listing-dynamic-terms__prefix">Types: </span>
+              <span class="jet-listing-dynamic-terms__prefix ">Type: </span>
               <a
                 href="https://venuehub.pk/venue-types/farm-houses/"
                 class="jet-listing-dynamic-terms__link"
               >
-                Farm Houses
+                {resData?.Sk}
               </a>
             </div>{" "}
           </div>
@@ -174,21 +178,19 @@ function VenueDetialsPage() {
         >
           <div class="elementor-widget-container">
             <div class="jet-listing jet-listing-dynamic-terms">
-              <span class="jet-listing-dynamic-terms__prefix">
-                Localities:{" "}
-              </span>
+              <span class="jet-listing-dynamic-terms__prefix">Localities:</span>
               <a
                 href="https://venuehub.pk/venue-location/barki-road/"
                 class="jet-listing-dynamic-terms__link"
               >
-                Barki Road
+                {resData?.state}
               </a>
               <span class="jet-listing-dynamic-terms__delimiter"> |</span>{" "}
               <a
                 href="https://venuehub.pk/venue-location/lahore/"
                 class="jet-listing-dynamic-terms__link"
               >
-                Lahore
+                {resData?.city}
               </a>
               <span class="jet-listing-dynamic-terms__delimiter"> |</span>{" "}
               <a
@@ -198,8 +200,151 @@ function VenueDetialsPage() {
                 Polo Club
               </a>
             </div>{" "}
+            <div class="jet-listing jet-listing-dynamic-terms">
+              <strong class="jet-listing-dynamic-terms__prefix">
+                MAx Seating Capcity:
+              </strong>
+              <a
+                href="https://venuehub.pk/venue-location/barki-road/"
+                class="jet-listing-dynamic-terms__link"
+              >
+                {resData?.max_seating}
+              </a>
+            </div>{" "}
+            <div class="jet-listing jet-listing-dynamic-terms">
+              <strong class="jet-listing-dynamic-terms__prefix">
+                Per Head :
+              </strong>
+              <a
+                href="https://venuehub.pk/venue-location/barki-road/"
+                class="jet-listing-dynamic-terms__link"
+              >
+                {resData?.per_head}
+              </a>
+            </div>{" "}
+            <div class="jet-listing jet-listing-dynamic-terms">
+              <strong class="jet-listing-dynamic-terms__prefix">Slots :</strong>
+              {resData?.slot.map((data) => (
+                <a
+                  href="https://venuehub.pk/venue-location/barki-road/"
+                  class="jet-listing-dynamic-terms__link"
+                >
+                  {data}
+                </a>
+              ))}
+            </div>{" "}
+            <div class="jet-listing jet-listing-dynamic-terms">
+              <strong class="jet-listing-dynamic-terms__prefix">Menus :</strong>
+              {resData?.menus.map((data) => (
+                <a
+                  href="https://venuehub.pk/venue-location/barki-road/"
+                  class="jet-listing-dynamic-terms__link"
+                >
+                  {`${data.bread}|${data.curry}|${data.desserts}|${data.rice}`}
+                </a>
+              ))}
+            </div>{" "}
           </div>
         </div>
+        <section class="page-section" id="about">
+          <div class="container">
+            <div class="text-center">
+              <h2 class="section-heading text-uppercase">About</h2>
+              <h3 class="section-subheading text-muted">
+                Lorem ipsum dolor sit amet consectetur.
+              </h3>
+            </div>
+            <ul class="timeline">
+              <li>
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src={imag1} alt="..." />
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>2009-2011</h4>
+                    <h4 class="subheading">Our Humble Beginnings</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Sunt ut voluptatum eius sapiente, totam reiciendis
+                      temporibus qui quibusdam, recusandae sit vero unde, sed,
+                      incidunt et ea quo dolore laudantium consectetur!
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src={imag2} alt="..." />
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>March 2011</h4>
+                    <h4 class="subheading">An Agency is Born</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Sunt ut voluptatum eius sapiente, totam reiciendis
+                      temporibus qui quibusdam, recusandae sit vero unde, sed,
+                      incidunt et ea quo dolore laudantium consectetur!
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src={imag3} alt="..." />
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>December 2015</h4>
+                    <h4 class="subheading">Transition to Full Service</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Sunt ut voluptatum eius sapiente, totam reiciendis
+                      temporibus qui quibusdam, recusandae sit vero unde, sed,
+                      incidunt et ea quo dolore laudantium consectetur!
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src={imag4} alt="..." />
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>July 2020</h4>
+                    <h4 class="subheading">Phase Two Expansion</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Sunt ut voluptatum eius sapiente, totam reiciendis
+                      temporibus qui quibusdam, recusandae sit vero unde, sed,
+                      incidunt et ea quo dolore laudantium consectetur!
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <h4>
+                    Be Part
+                    <br />
+                    Of Our
+                    <br />
+                    Story!
+                  </h4>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
       </div>
     </>
   );

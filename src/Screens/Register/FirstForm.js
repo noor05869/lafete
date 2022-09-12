@@ -260,107 +260,113 @@ function FirstForm({
                               </div>
                             </div>
                             {/* cateringServices */}
-                            <FieldArray name="services">
-                              {({ insert, remove, push }) => (
-                                <div>
-                                  {values.services.length > 0 &&
-                                    values.services.map((friend, index) => (
-                                      <div className="row">
-                                        <div className="d-flex justify-content-between">
-                                          <span></span>
-                                          <strong>Add Service</strong>
-                                          {values.services.length > 1 ? (
-                                            <span>
-                                              <CloseSquareFilled
-                                                onClick={() => remove(index)}
-                                                className=" cusor-pointer"
-                                              />
-                                            </span>
-                                          ) : (
+                            {values.service === "Catering" ? (
+                              <FieldArray name="services">
+                                {({ insert, remove, push }) => (
+                                  <div>
+                                    {values.services.length > 0 &&
+                                      values.services.map((friend, index) => (
+                                        <div className="row">
+                                          <div className="d-flex justify-content-between">
                                             <span></span>
-                                          )}
-                                        </div>
-                                        <div className=" mb-3 col-12 col-md-6">
-                                          <div class="form-group ">
-                                            <label
-                                              className="d-flex justify-content-start"
-                                              for="exampleInputEmail1"
-                                            >
-                                              Service
-                                            </label>
-                                            <Field
-                                              class="form-select form-control"
-                                              as="select"
-                                              name={`services.${index}.service`}
-                                              placeHolder="select"
-                                            >
-                                              <option value="hall">
-                                                Select Service
-                                              </option>
+                                            <strong>Add Service</strong>
+                                            {values.services.length > 1 ? (
+                                              <span>
+                                                <CloseSquareFilled
+                                                  onClick={() => remove(index)}
+                                                  className=" cusor-pointer"
+                                                />
+                                              </span>
+                                            ) : (
+                                              <span></span>
+                                            )}
+                                          </div>
+                                          <div className=" mb-3 col-12 col-md-6">
+                                            <div class="form-group ">
+                                              <label
+                                                className="d-flex justify-content-start"
+                                                for="exampleInputEmail1"
+                                              >
+                                                Service
+                                              </label>
+                                              <Field
+                                                class="form-select form-control"
+                                                as="select"
+                                                name={`services.${index}.service`}
+                                                placeHolder="select"
+                                              >
+                                                <option value="hall">
+                                                  Select Service
+                                                </option>
 
-                                              <option value="hall">Hall</option>
-                                              <option value="Catering">
-                                                Live BBQ
-                                              </option>
-                                              <option value="Farm House">
-                                                Pan Service
-                                              </option>
-                                              <option value="Event Organizer">
-                                                Gol Gappe
-                                              </option>
-                                            </Field>
+                                                <option value="hall">
+                                                  Hall
+                                                </option>
+                                                <option value="Catering">
+                                                  Live BBQ
+                                                </option>
+                                                <option value="Farm House">
+                                                  Pan Service
+                                                </option>
+                                                <option value="Event Organizer">
+                                                  Gol Gappe
+                                                </option>
+                                              </Field>
+                                            </div>
                                           </div>
-                                        </div>
-                                        <div className=" mb-3 col-12 col-md-6">
-                                          <div class="form-group">
-                                            <label
-                                              className="d-flex justify-content-start"
-                                              for="exampleInputEmail1"
-                                            >
-                                              About Service
-                                            </label>
-                                            <Field
-                                              name={`services.${index}.about_service`}
-                                              type="textarea"
-                                              class="form-control form-control"
-                                              id="exampleInputEmail1"
-                                              aria-describedby="emailHelp"
-                                            />
+                                          <div className=" mb-3 col-12 col-md-6">
+                                            <div class="form-group">
+                                              <label
+                                                className="d-flex justify-content-start"
+                                                for="exampleInputEmail1"
+                                              >
+                                                About Service
+                                              </label>
+                                              <Field
+                                                name={`services.${index}.about_service`}
+                                                type="textarea"
+                                                class="form-control form-control"
+                                                id="exampleInputEmail1"
+                                                aria-describedby="emailHelp"
+                                              />
+                                            </div>
                                           </div>
-                                        </div>
-                                        <div className=" row">
-                                          <div className="col-12">
-                                            <label
-                                              className="d-flex mb-2 justify-content-start"
-                                              for="exampleInputEmail1"
-                                            >
-                                              Upload Service Images
-                                            </label>
+                                          <div className=" row">
+                                            <div className="col-12">
+                                              <label
+                                                className="d-flex mb-2 justify-content-start"
+                                                for="exampleInputEmail1"
+                                              >
+                                                Upload Service Images
+                                              </label>
 
-                                            <UploadFile />
+                                              <UploadFile />
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
-                                    ))}
-                                  <button
-                                    type="button"
-                                    className=" btn btn-primary "
-                                    onClick={() =>
-                                      push({
-                                        service: "",
-                                        about_service: "",
-                                        images: [
-                                          "https://media.istockphoto.com/photos/banquet-hall-picture-id498049757?k=20&m=498049757&s=612x612&w=0&h=acRRtBw_RQU-7u_d1WLJWzmc3o0EzgQzCx8AoUNZMAw=",
-                                          "https://media.istockphoto.com/photos/typical-wooden-small-farm-house-in-victorian-style-in-williamstown-picture-id879361282?k=20&m=879361282&s=612x612&w=0&h=T3eMHJR4Ybz9bL4PPP4MX7u6Scg1sNpuSoQDOUCR6Cs=",
-                                        ],
-                                      })
-                                    }
-                                  >
-                                    Add Service
-                                  </button>
-                                </div>
-                              )}
-                            </FieldArray>
+                                      ))}
+                                    <button
+                                      type="button"
+                                      className=" btn btn-primary "
+                                      onClick={() =>
+                                        push({
+                                          service: "",
+                                          about_service: "",
+                                          images: [
+                                            "https://media.istockphoto.com/photos/banquet-hall-picture-id498049757?k=20&m=498049757&s=612x612&w=0&h=acRRtBw_RQU-7u_d1WLJWzmc3o0EzgQzCx8AoUNZMAw=",
+                                            "https://media.istockphoto.com/photos/typical-wooden-small-farm-house-in-victorian-style-in-williamstown-picture-id879361282?k=20&m=879361282&s=612x612&w=0&h=T3eMHJR4Ybz9bL4PPP4MX7u6Scg1sNpuSoQDOUCR6Cs=",
+                                          ],
+                                        })
+                                      }
+                                    >
+                                      Add Service
+                                    </button>
+                                  </div>
+                                )}
+                              </FieldArray>
+                            ) : (
+                              ""
+                            )}
                             {successMessage && (
                               <div
                                 class=" mb-1 alert alert-success"
